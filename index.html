@@ -9,18 +9,27 @@
 
 import zim from "https://zimjs.org/cdn/015/zim";
 
-var assets = ["asteroid.png", "boom.png", "boom.mp3"];
-var path = "/";
+var assets = ["asteroid.png", "boom.png", "boom.mp3", "sun2.png"];
+ var path = "assets/";
 
 // See Docs under Frame for FIT, FILL, FULL, and TAG
-new Frame(FIT, 1024, 768, light, dark, ready, assets, path);
+new Frame(FIT, 1024, 768, light, dark, ready, assets, path, new Waiter());
 function ready() {
     
+    // F.loadAssets("asteroid.png");
+    // F.on("complete", ()=>{
+    //     var image = new Pic("asteroid.png");
+    //     image.center();
+    //     image.sca(6);
+    //     S.update();
+    // })
+    // const spriteImage = new Pic("boom.png");
+    // spriteImage.center();
     // given F (Frame), S (Stage), W (width), H (height)
     // put code here
 
-    const explode = new Sprite(Frame.assets("boom.png"), 8, 6).sca(2);
-    // const asteroid = Frame.assets("asteroid.png").cur().centerReg();
+    // const explode = new Sprite(spriteImage, 8, 6).sca(2);
+    // const asteroid = new Pic("asteroid.png").cur().centerReg();
 
     // asteroid.on("mousedown", ()=>{
     //     asteroid.removeFrom();
@@ -30,12 +39,17 @@ function ready() {
     // })
 
     const pathCircle = new Blob({
-        borderColor: light,
-        borderWidth:3,
+        borderColor: blue,
+        borderWidth:1,
         interactive: false
     })
     .sca(3)
     .center();
+
+    // const pathCicle = new  Circle(400, red);
+    // pathCicle.center();
+
+    new Pic("sun2.png").center();
 
     new Circle(20, red).addTo().animate({
         props: {path: pathCircle},
