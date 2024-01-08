@@ -9,13 +9,27 @@
 
 import zim from "https://zimjs.org/cdn/015/zim";
 
+var assets = ["asteroid.png", "boom.png", "boom.mp3"];
+var path = "/";
+
 // See Docs under Frame for FIT, FILL, FULL, and TAG
-new Frame(FIT, 1024, 768, light, dark, ready);
+new Frame(FIT, 1024, 768, light, dark, ready, assets, path);
 function ready() {
     
     // given F (Frame), S (Stage), W (width), H (height)
     // put code here
-    const path = new Blob({
+
+    const explode = new Sprite(Frame.assets("boom.png"), 8, 6).sca(2);
+    // const asteroid = Frame.assets("asteroid.png").cur().centerReg();
+
+    // asteroid.on("mousedown", ()=>{
+    //     asteroid.removeFrom();
+    //     explode.centerReg().loc(asteroid).run(1);
+    //     Frame.asset("boom.mp3").play();
+    //     stage.update();
+    // })
+
+    const pathCircle = new Blob({
         borderColor: light,
         borderWidth:3,
         interactive: false
@@ -24,8 +38,8 @@ function ready() {
     .center();
 
     new Circle(20, red).addTo().animate({
-        props: {path: path},
-        time: 5,
+        props: {path: pathCircle},
+        time: 3,
         loop: true,
         ease: 'linear'
     })
